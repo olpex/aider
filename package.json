@@ -1,6 +1,7 @@
 {
   "name": "claude-code-tracker",
   "version": "1.0.0",
+  "type": "module",
   "description": "Трекер безкоштовного Claude Code з автоматичними сповіщеннями",
   "main": "index.html",
   "scripts": {
