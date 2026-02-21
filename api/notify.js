@@ -1,10 +1,11 @@
 // Ендпоінт для відправки сповіщень (викликається cron або вручну)
+
 import webpush from 'web-push';
 
-// Налаштування ключів (у продакшені використовуйте env variables)
-const VAPID_PUBLIC_KEY = 'BEl62iM...'; // Замініть на реальні ключі
-const VAPID_PRIVATE_KEY = 'your-private-key';
-const VAPID_SUBJECT = 'mailto:admin@example.com';
+// Налаштування ключів: читаємо з environment variables з fallback на заглушки
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || 'BEl62iM...';
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || 'your-private-key';
+const VAPID_SUBJECT = process.env.VAPID_SUBJECT || 'mailto:admin@example.com';
 
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 

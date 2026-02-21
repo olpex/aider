@@ -40,12 +40,14 @@ async function subscribeToNotifications() {
     const permission = await Notification.requestPermission();
     
     if (permission === 'granted') {
-      // Генерація ключів для push (у реальному проєкті - з сервера)
+      // Отримуємо публічний VAPID ключ з сервера (безпечніше, ніж хардкод)
+      const cfgResp = await fetch('/api/config');
+      const cfg = cfgResp.ok ? await cfgResp.json() : {};
+      const publicKey = cfg.VAPID_PUBLIC_KEY || 'BEl62iMfZ7f6G0K0g8Jg8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g';
+
       const subscription = await swRegistration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-          'BEl62iMfZ7f6G0K0g8Jg8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g' // Замініть на реальний VAPID ключ
-        )
+        applicationServerKey: urlBase64ToUint8Array(publicKey)
       });
       
       // Відправка підписки на сервер
