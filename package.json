@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-tracker",
+  "version": "1.0.0",
+  "description": "Трекер безкоштовного Claude Code з автоматичними сповіщеннями",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "web-push": "^3.6.6"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.0"
+  }
+}
